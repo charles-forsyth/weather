@@ -31,7 +31,6 @@ This project provides a suite of Python tools for monitoring and displaying weat
     ```bash
     pip install -r requirements.txt
     ```
-    *(Note: A `requirements.txt` file will be created in a subsequent step.)*
 
 ## Usage
 
@@ -60,4 +59,4 @@ python3 weather_leds.py --test
 
 ## Configuration
 
-The latitude and longitude for the weather data are hard-coded in `weather_gui.py` and `weather_leds.py`. You can change the `LATITUDE` and `LONGITUDE` constants in these files to get weather for your desired location.
+The latitude and longitude for the weather data are now managed in `config.py`. You can change the `LATITUDE` and `LONGITUDE` constants in `config.py` to get weather for your desired location.
