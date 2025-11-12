@@ -60,3 +60,5 @@ weather-leds --test
 ## Configuration
 
 The latitude and longitude for the weather data are now managed in `weather/config.py`. You can change the `LATITUDE` and `LONGITUDE` constants in `weather/config.py` to get weather for your desired location.
+
+*Note: Icon files are loaded using `importlib.resources` for robust path resolution within the installed package.*
