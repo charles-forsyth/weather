@@ -9,14 +9,13 @@ import os
 import time
 from datetime import datetime
 import io
+from config import LATITUDE, LONGITUDE
 
 # --- Determine absolute path for icons ---
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ICON_DIR = os.path.join(SCRIPT_DIR, "icons")
 
 # --- Configuration ---
-LATITUDE = 41.92919804645482
-LONGITUDE = -77.05283564316002
 UPDATE_INTERVAL = 600000  # 10 minutes in milliseconds
 RADAR_IMAGE_WIDTH = 500
 

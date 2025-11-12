@@ -5,14 +5,13 @@ import time
 import sys
 import signal
 import argparse
+from config import LATITUDE, LONGITUDE
 
 # --- Configuration ---
 RED_LED = 23
 GREEN_LED = 18
 BLUE_LED = 22
 LED_PINS = [RED_LED, GREEN_LED, BLUE_LED]
-LATITUDE = 41.92919804645482
-LONGITUDE = -77.05283564316002
 TEMP_DEVIATION = 10
 PRECIP_HEAVY = 0.30
 PRECIP_MODERATE = 0.10
