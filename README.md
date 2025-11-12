@@ -4,14 +4,14 @@ This project provides a suite of Python tools for monitoring and displaying weat
 
 ## Features
 
-*   **Graphical Weather App (`weather_gui.py`)**:
+*   **Graphical Weather App (`weather-gui`)**:
     *   Displays current temperature, humidity, wind speed, and more.
     *   Shows a detailed multi-day forecast.
     *   Includes a live weather radar image.
     *   Displays the current moon phase using custom-generated icons.
     *   Automatically refreshes data every 10 minutes.
 
-*   **Raspberry Pi LED Indicator (`weather_leds.py`)**:
+*   **Raspberry Pi LED Indicator (`weather-leds`)**:
     *   Provides a simple, at-a-glance weather status using colored LEDs.
     *   Indicates temperature relative to the 24-hour average (warmer, cooler, or average).
     *   Blinks to indicate precipitation (rain, snow, or sleet) with varying intensity.
@@ -27,9 +27,9 @@ This project provides a suite of Python tools for monitoring and displaying weat
     cd weather
     ```
 
-2.  **Install the required Python libraries:**
+2.  **Install the package using pip:**
     ```bash
-    pip install -r requirements.txt
+    pip install .
     ```
 
 ## Usage
@@ -38,7 +38,7 @@ This project provides a suite of Python tools for monitoring and displaying weat
 
 To launch the graphical weather application, run:
 ```bash
-python3 weather_gui.py
+weather-gui
 ```
 The application will run as a background process.
 
@@ -46,17 +46,17 @@ The application will run as a background process.
 
 To run the LED indicator on a Raspberry Pi:
 ```bash
-python3 weather_leds.py
+weather-leds
 ```
 You can also run it for a specific duration or in self-test mode:
 ```bash
 # Run for one hour
-python3 weather_leds.py --duration 3600
+weather-leds --duration 3600
 
 # Run a self-test of the LEDs
-python3 weather_leds.py --test
+weather-leds --test
 ```
 
 ## Configuration
 
-The latitude and longitude for the weather data are now managed in `config.py`. You can change the `LATITUDE` and `LONGITUDE` constants in `config.py` to get weather for your desired location.
+The latitude and longitude for the weather data are now managed in `weather/config.py`. You can change the `LATITUDE` and `LONGITUDE` constants in `weather/config.py` to get weather for your desired location.

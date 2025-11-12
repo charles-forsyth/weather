@@ -5,7 +5,7 @@ import time
 import sys
 import signal
 import argparse
-from config import LATITUDE, LONGITUDE
+from .config import LATITUDE, LONGITUDE
 
 # --- Configuration ---
 RED_LED = 23
