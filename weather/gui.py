@@ -120,39 +120,25 @@ class WeatherApp(tk.Tk):
         self.update_weather()
         self.update_countdown()
 
-        def load_icons(self):
-
-            self.icons = {}
-
-            icon_files = {
-
-                "temp": "temp.png", "humidity": "humidity.png", "wind": "wind.png", 
-
-                "sky": "sky.png", "hazard": "hazard.png", "pressure": "pressure.png",
-
-                "moon_new": "moon_new.png", "moon_waxing_crescent": "moon_waxing_crescent.png",
-
-                "moon_first_quarter": "moon_first_quarter.png", "moon_waxing_gibbous": "moon_waxing_gibbous.png",
-
-                "moon_full": "moon_full.png", "moon_waning_gibbous": "moon_waning_gibbous.png",
-
-                "moon_third_quarter": "moon_third_quarter.png", "moon_waning_crescent": "moon_waning_crescent.png"
-
-            }
-
-            for name, filename in icon_files.items():
-
-                try:
-
-                    with resources.path('weather.icons', filename) as path:
-
-                        if os.path.exists(path):
-
-                            self.icons[name] = ImageTk.PhotoImage(Image.open(path).resize((20, 20), Image.LANCZOS))
-
-                except FileNotFoundError:
-
-                    print(f"Warning: Icon not found: {filename}")
+    def load_icons(self):
+        self.icons = {}
+        icon_files = {
+            "temp": "temp.png", "humidity": "humidity.png", "wind": "wind.png", 
+            "sky": "sky.png", "hazard": "hazard.png", "pressure": "pressure.png",
+            "moon_new": "moon_new.png", "moon_waxing_crescent": "moon_waxing_crescent.png",
+            "moon_first_quarter": "moon_first_quarter.png", "moon_waxing_gibbous": "moon_waxing_gibbous.png",
+            "moon_full": "moon_full.png", "moon_waning_gibbous": "moon_waning_gibbous.png",
+            "moon_third_quarter": "moon_third_quarter.png", "moon_waning_crescent": "moon_waning_crescent.png"
+        }
+        for name, filename in icon_files.items():
+            try:
+                # Use the newer `files()` API for Python 3.9+
+                icon_path = resources.files('weather.icons') / filename
+                with resources.as_file(icon_path) as path:
+                    if os.path.exists(path):
+                        self.icons[name] = ImageTk.PhotoImage(Image.open(path).resize((20, 20), Image.LANCZOS))
+            except (FileNotFoundError, ModuleNotFoundError):
+                print(f"Warning: Icon not found: {filename}")
 
     def create_widgets(self):
         tk.Label(self, text=f"Weather Report: {LATITUDE:.2f}, {LONGITUDE:.2f}", font=self.bold_font, bg=COLOR_BG, fg=COLOR_HEADER).grid(row=0, column=0, columnspan=2, pady=(0, 10))
