@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 *.log
+build/
+weather_suite.egg-info/

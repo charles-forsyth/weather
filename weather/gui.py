@@ -62,8 +62,14 @@ def get_weather_data(lat, lon):
         grid_props = grid_res.json()['properties']
         
         def get_grid_value(prop, default=0.0, factor=1.0, offset=0.0):
-            val = grid_props.get(prop, {}).get('values', [{}])[0].get('value')
-            return (val * factor) + offset if val is not None else default
+            try:
+                prop_data = grid_props.get(prop, {})
+                values_list = prop_data.get('values', [])
+                val = values_list[0].get('value') if values_list else None
+                return (val * factor) + offset if val is not None else default
+            except Exception as e:
+                print(f"--- Debug: Error in get_grid_value for prop '{prop}': {e}")
+                return default
 
         radar_image_url = None
         try:
@@ -94,7 +100,7 @@ def get_weather_data(lat, lon):
             "apparent_temp": get_grid_value('apparentTemperature', factor=1.8, offset=32),
             "pressure_in": get_grid_value('surfacePressure', factor=0.02953),
             "prob_precip": get_grid_value('probabilityOfPrecipitation'),
-            "hazards": [item['value'] for sub in grid_props.get('hazards', {}).get('values', []) for item in sub.get('value', [])]
+            "hazards": [f"{item.get('phenomenon', '')} {item.get('significance', '')}".strip() for sub in grid_props.get('hazards', {}).get('values', []) for item in sub.get('value', [])]
         }
     except Exception as e:
         print(f"--- Debug: CRITICAL ERROR in get_weather_data: {e}") # Keep this debug for now
